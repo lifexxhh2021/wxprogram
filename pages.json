@@ -1,0 +1,210 @@
+{
+	"pages": [
+		{
+			"path": "pages/tabBar/home/index",
+			"style": {
+				"navigationBarTitleText": "首页",
+				"navigationStyle": "custom",
+				"navigationBarTextStyle": "white",
+				"onReachBottomDistance": 120
+			},
+			"meta": {
+				"auth": false
+			}
+		},
+		{
+			"path": "pages/tabBar/base/index",
+			"style": {
+				"navigationBarTitleText": "目录1"
+			},
+			"meta": {
+				"auth": true
+			}
+		},
+		{
+			"path": "pages/tabBar/advance/index",
+			"style": {
+				"navigationBarTitleText": "目录2"
+			},
+			"meta": {
+				"auth": true
+			}
+		},
+		{
+			"path": "pages/login/index",
+			"style": {
+				"navigationBarTitleText": "登录"
+			},
+			"meta": {
+				"auth": false
+			}
+		}
+	],
+	"subPackages": [{
+		"root": "pages/moduleA",
+		"pages": [
+			{
+				"path": "pay/index",
+				"style": {
+					"navigationBarTitleText": "支付"
+				},
+				"meta": {
+					"auth": true
+				}
+			},
+			{
+				"path": "share/index",
+				"style": {
+					"navigationBarTitleText": "分享"
+				},
+				"meta": {
+					"auth": true
+				}
+			},
+			{
+				"path": "upload/index",
+				"style": {
+					"navigationBarTitleText": "上传下载"
+				},
+				"meta": {
+					"auth": true
+				}
+			},
+			{
+				"path": "customIcon/index",
+				"style": {
+					"navigationBarTitleText": "自定义字体图标"
+				},
+				"meta": {
+					"auth": true
+				}
+			},
+			{
+				"path": "contact/index",
+				"style": {
+					"navigationBarTitleText": "联系客服"
+				},
+				"meta": {
+					"auth": true
+				}
+			}
+		]
+	},{
+		"root": "pages/moduleB",
+		"pages": [
+			{
+				"path": "address/index",
+				"style": {
+					"navigationBarTitleText": "地址管理"
+				},
+				"meta": {
+					"auth": true
+				}
+			},
+			{
+				"path": "address/edit",
+				"style": {
+					"navigationBarTitleText": "地址编辑"
+				},
+				"meta": {
+					"auth": true
+				}
+			},
+			{
+				"path": "order/index",
+				"style": {
+					"navigationBarTitleText": "订单管理",
+					"onReachBottomDistance": 120,
+					"enablePullDownRefresh": true,
+					"backgroundColor": "#efefef"
+				},
+				"meta": {
+					"auth": true
+				}
+			},
+			{
+				"path": "order/index2",
+				"style": {
+					"navigationBarTitleText": "订单管理2"
+				},
+				"meta": {
+					"auth": true
+				}
+			},
+			{
+				"path": "order/index3",
+				"style": {
+					"navigationBarTitleText": "订单管理3"
+				},
+				"meta": {
+					"auth": true
+				}
+			},
+			{
+				"path": "chart/pie",
+				"style": {
+					"navigationBarTitleText": "饼图/圆环图"
+				},
+				"meta": {
+					"auth": true
+				}
+			},
+			{
+				"path": "chart/candle",
+				"style": {
+					"navigationBarTitleText": "K线图"
+				},
+				"meta": {
+					"auth": true
+				}
+			}
+		]
+	}],
+	"globalStyle": {
+		"navigationBarBackgroundColor": "#000",
+		"navigationBarTextStyle": "white",
+		"navigationBarTitleText": "uni-app",
+		"backgroundColor": "#000"
+	},
+	"tabBar": {
+	    "backgroundColor": "#fff",
+	    "color": "#000",
+	    "selectedColor": "#FF4D4F",
+	    "borderStyle": "white",
+	    "list": [
+			{
+				"pagePath": "pages/tabBar/base/index",
+				"iconPath": "static/tabbars/cart.png",
+				"selectedIconPath": "static/tabbars/cart-selected.png",
+				"text": "目录1"
+			},
+			{
+				"pagePath": "pages/tabBar/home/index",
+				"iconPath": "static/tabbars/home.png",
+				"selectedIconPath": "static/tabbars/home-selected.png",
+				"text": "首页"
+			},
+			{
+				"pagePath": "pages/tabBar/advance/index",
+				"iconPath": "static/tabbars/user.png",
+				"selectedIconPath": "static/tabbars/user-selected.png",
+				"text": "目录2"
+			}
+		]
+	},
+	"easycom": {
+		"^u-(.*)": "uview-ui/components/u-$1/u-$1.vue",
+		"^cs-(.*)": "@/components/cs-$1/cs-$1.vue"
+	},
+	//模式配置，仅开发期间生效
+	"condition": { 
+	    "current": 0,
+	    "list": [
+			{
+	            "name": "custom", //模式名称
+	            "path": "pages/moduleA/contact/index", //启动页面，必选
+	            "query": "autoplay=false&type=1" //启动参数，在页面的onLoad函数里面得到
+	        }
+	    ]
+	}
+}
