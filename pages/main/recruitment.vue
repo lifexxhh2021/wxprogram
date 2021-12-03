@@ -63,7 +63,16 @@
 		</u-sticky>
 		<view class="list-wrap u-flex u-flex-wrap">
 			<view class="list-item" v-for="item,index in listData" :key="index">
-				{{index}}
+				<view>
+					<view class="name">服务员</view>
+					<view class="addr">永春县城关XX街道</view>
+					<view class="education">初中及以下</view>
+				</view>
+				<view class="limit">1-2年</view>
+				<view>
+					<view class="money">2500元-3500元/月</view>
+					<view class="date">10月06日</view>
+				</view>
 			</view>
 		</view>
 		<view class="loading">加载中...</view>
@@ -154,10 +163,11 @@
 	.catlist{
 		display: flex;
 		flex-wrap: wrap;
+		padding: 0 20px;
 		.catitem{
 			width: 25%;
 			text-align: center;
-			margin: 15rpx 0;
+			margin:20rpx 0;
 		}
 	}
 	.stastics{
@@ -170,15 +180,15 @@
 		// min-height: calc(100vh - 44px - env(safe-area-inset-top));
 	}
 	.list-item{
-		width: 345rpx;
-		height: 100rpx;
-		border: 2rpx solid #efefef;
-		border-radius: 8rpx;
-		text-align: center;
-		margin-top: 20rpx;
-		background-color: #fff;
-		&:nth-child(odd){
-			margin-right: 20rpx;
+		width: 100%;
+		display:flex;
+		justify-content: space-between;
+		align-items: center;
+		margin-top:10px;
+		.name{
+		}
+		.money{
+			color:#f0685c;
 		}
 	}
 	.loading{
