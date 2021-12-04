@@ -41,7 +41,7 @@
       <u-icon name="arrow-right-double"></u-icon>
     </view>
     <view class="catlist">
-      <view class="catitem" v-for="item in 8">
+      <view class="catitem" v-for="item,index in 8" :key="index">
         <u-icon
           name="icon_delete1"
           custom-prefix="custom-icon"
@@ -69,7 +69,10 @@
       </view>
     </u-sticky>
     <view class="list-wrap">
-      <view class="list-item" v-for="(item, index) in listData" :key="index">
+      <view class="list-item" 
+				v-for="(item, index) in listData" :key="index"
+				@tap="openPage('/pages/jobs/detail', 'navigateTo', {id: 100})"
+			>
         <view>
           <view class="name">服务员</view>
           <view class="addr u-m-t-10 u-line-1">永春县城关XX街道</view>
