@@ -146,11 +146,6 @@
 		font-size: 36rpx;
 		color: $cs-red;
 	}
-	.split-line{
-		width: 100%;
-		height: 10rpx;
-		background: $cs-bg-color;
-	}
 	.tag{
 		padding: 15rpx;
 		background: $cs-bg-color;
