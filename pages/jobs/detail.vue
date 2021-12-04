@@ -6,20 +6,34 @@
 					<view class="title">店员</view>
 					<view class="money">1800元-2800元/月</view>
 				</view>
-				<view class="u-flex u-p-t-10">
-					<view>
-						<u-icon name="map"></u-icon>
-						<text>地区地区地区地区</text>
+				<!-- 非弹性 -->
+				<view>
+					<view class="u-flex u-p-t-10">
+						<view>
+							<u-icon name="map"></u-icon>
+							<text>地区地区地区地区</text>
+						</view>
+						<view class="line u-p-l-15 u-p-r-15">|</view>
+						<view>
+							<u-icon name="bookmark"></u-icon>
+							<text>经验不限</text>
+						</view>
 					</view>
-					<view class="line u-p-l-15 u-p-r-15">|</view>
-					<view>
+					<view class="u-m-t-5">
 						<u-icon name="bookmark"></u-icon>
-						<text>经验不限</text>
+						<text>学历不限</text>
 					</view>
 				</view>
-				<view class="u-m-t-5">
-					<u-icon name="bookmark"></u-icon>
-					<text>学历不限</text>
+				<!-- 弹性 -->
+				<view style="display: none;">
+					<view class="u-font-32 u-m-t-15">工作要求：</view>
+					<view class="u-flex u-flex-wrap u-m-t-15">				
+						<view class="tag">18-45岁</view>
+						<view class="tag">全天</view>
+						<view class="tag">不限身份</view>
+					</view>
+					<view class="u-font-32 u-m-t-15">工作时间：</view>
+					<view class="u-flex u-flex-wrap u-m-t-15">2019-12-01至2019-12-15 08:30-18:00</view>
 				</view>
 			</view>
 			<view class="u-p-l-25 u-p-r-25">
@@ -39,8 +53,10 @@
 					<view class="tag">试用期1个月</view>
 					<view class="tag">求有上进心，有想法的小伙伴</view>
 				</view>
-				<view class="u-m-t-30 detail-cont">
-					北京2022冬奥会计划于2月4日开幕北京2022冬奥会计划于2月4日开幕北京2022冬奥会计划于2月4日开幕
+				<view class="u-m-t-30">
+					<u-read-more show-height="300">
+						<rich-text :nodes="content"></rich-text>
+					</u-read-more>
 				</view>
 			</view>
 			<view class="split-line"></view>
@@ -91,7 +107,7 @@
 	export default {
 		data() {
 			return {
-				
+				content: '北京2022冬奥会计划于2月4日开幕北京2022冬奥会计划于2月4日开幕北京2022冬奥会计划于2月4日开幕北京2022冬奥会计划于2月4日开幕北京2022冬奥会计划于2月4日开幕北京2022冬奥会计划于2月4日开幕北京2022冬奥会计划于2月4日开幕北京2022冬奥会计划于2月4日开幕北京2022冬奥会计划于2月4日开幕北京2022冬奥会计划于2月4日开幕北京2022冬奥会计划于2月4日开幕'
 			};
 		},
 		methods: {
