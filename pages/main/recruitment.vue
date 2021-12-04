@@ -207,7 +207,7 @@ export default {
     align-self: center;
   }
   .money {
-    color: #f0685c;
+    color: $cs-red;
     font-size: 32rpx;
   }
 }

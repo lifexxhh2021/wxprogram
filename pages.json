@@ -49,6 +49,28 @@
 		}
   ],
 	"subPackages": [{
+		"root": "pages/jobs",
+		"pages": [{
+				"path": "detail",
+				"style": {
+					"navigationBarTitleText": "职位详情"
+				},
+				"meta": {
+					"auth": false
+				}
+			}]
+	},{
+		"root": "pages/other",
+		"pages": [{
+				"path": "region",
+				"style": {
+					"navigationBarTitleText": "选择地区"
+				},
+				"meta": {
+					"auth": false
+				}
+			}]
+	},{
 		"root": "pages/moduleA",
 		"pages": [{
 				"path": "pay/index",
@@ -218,7 +240,7 @@
 		"current": 0,
 		"list": [{
 			"name": "custom", //模式名称
-			"path": "pages/main/jobs", //启动页面，必选
+			"path": "pages/jobs/detail", //启动页面，必选
 			"query": "autoplay=false&type=1" //启动参数，在页面的onLoad函数里面得到
 		}]
 	}
