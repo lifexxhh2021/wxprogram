@@ -175,36 +175,36 @@
 	"tabBar": {
 		"backgroundColor": "#fff",
 		"color": "#000",
-		"selectedColor": "#FF4D4F",
+		"selectedColor": "#059bf4",
 		"borderStyle": "white",
 		"list": [{
 				"pagePath": "pages/main/recruitment",
-				"iconPath": "static/tabbars/cart.png",
-				"selectedIconPath": "static/tabbars/cart-selected.png",
+				"iconPath": "static/tabbars/tab1.png",
+				"selectedIconPath": "static/tabbars/tab1-active.png",
 				"text": "招聘信息"
 			},
 			{
 				"pagePath": "pages/main/jobs",
-				"iconPath": "static/tabbars/home.png",
-				"selectedIconPath": "static/tabbars/home-selected.png",
+				"iconPath": "static/tabbars/tab2.png",
+				"selectedIconPath": "static/tabbars/tab2-active.png",
 				"text": "所有职位"
 			},
 			{
 				"pagePath": "pages/main/temporary",
-				"iconPath": "static/tabbars/user.png",
-				"selectedIconPath": "static/tabbars/user-selected.png",
+				"iconPath": "static/tabbars/tab3.png",
+				"selectedIconPath": "static/tabbars/tab3-active.png",
 				"text": "临时务工"
 			},
 			{
 				"pagePath": "pages/main/messages",
-				"iconPath": "static/tabbars/user.png",
-				"selectedIconPath": "static/tabbars/user-selected.png",
+				"iconPath": "static/tabbars/tab4.png",
+				"selectedIconPath": "static/tabbars/tab4-active.png",
 				"text": "我的私信"
 			},
 			{
 				"pagePath": "pages/main/personal",
-				"iconPath": "static/tabbars/user.png",
-				"selectedIconPath": "static/tabbars/user-selected.png",
+				"iconPath": "static/tabbars/tab5.png",
+				"selectedIconPath": "static/tabbars/tab5-active.png",
 				"text": "个人中心"
 			}
 		]
@@ -218,7 +218,7 @@
 		"current": 0,
 		"list": [{
 			"name": "custom", //模式名称
-			"path": "pages/main/recruitment", //启动页面，必选
+			"path": "pages/main/jobs", //启动页面，必选
 			"query": "autoplay=false&type=1" //启动参数，在页面的onLoad函数里面得到
 		}]
 	}
