@@ -71,7 +71,7 @@
     <view class="list-wrap">
       <view class="list-item" 
 				v-for="(item, index) in listData" :key="index"
-				@tap="openPage('/pages/jobs/detail', 'navigateTo', {id: 100})"
+				@click="openPage('/pages/jobs/detail', 'navigateTo', {id: 100})"
 			>
         <view>
           <view class="name">服务员</view>

@@ -27,7 +27,7 @@
 				<view class="u-flex u-p-t-20 u-p-b-20">
 					<view class="u-flex u-col-top">
 						<u-icon name="map-fill" color="#059bf4" size="60"></u-icon>
-						<text>详细地址详细地址详细地址详细地址详细地址详细地址详细地址详细地址详细地址详细地址详细地址详细地址</text>
+						<text @click="getLocation">详细地址详细地址详细地址详细地址详细地址详细地址详细地址详细地址详细地址详细地址详细地址详细地址</text>
 					</view>
 					<u-icon name="arrow-right"></u-icon>
 				</view>
@@ -74,7 +74,7 @@
 				<view class="u-flex u-col-center u-p-l-25">
 					<view class="u-m-r-40">
 						<u-icon name="home" size="40"></u-icon>
-						<view>首页</view>
+						<view @click="openPage('/pages/main/recruitment', 'switchTab')">首页</view>
 					</view>
 					<view>
 						<u-icon name="bookmark" size="40"></u-icon>
@@ -93,7 +93,23 @@
 			return {
 				
 			};
-		}
+		},
+		methods: {
+			getLocation() {
+				console.log('获取地址。。。。')
+				uni.getLocation({
+					type: 'gcj02',
+					success: function (res) {
+						console.log('当前位置的经度：' + res.longitude);
+						console.log('当前位置的纬度：' + res.latitude);
+						uni.chooseLocation({
+							latitude: res.latitude,
+							longitude: res.longitude
+						})
+					}
+				})
+			},
+		},
 	}
 </script>
 

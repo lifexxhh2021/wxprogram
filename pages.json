@@ -235,6 +235,11 @@
 		"^u-(.*)": "uview-ui/components/u-$1/u-$1.vue",
 		"^cs-(.*)": "@/components/cs-$1/cs-$1.vue"
 	},
+	"permission": {
+		"scope.userLocation": {
+			"desc": "你的位置信息将用于小程序位置接口的效果展示" // 高速公路行驶持续后台定位
+		}
+	},
 	//模式配置，仅开发期间生效
 	"condition": {
 		"current": 0,
