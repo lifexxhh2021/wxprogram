@@ -61,7 +61,15 @@
 			},{
 				"path": "register",
 				"style": {
-					"navigationBarTitleText": "基本信息"
+					"navigationBarTitleText": "个人信息"
+				},
+				"meta": {
+					"auth": false
+				}
+			},{
+				"path": "register2",
+				"style": {
+					"navigationBarTitleText": "公司信息"
 				},
 				"meta": {
 					"auth": false
