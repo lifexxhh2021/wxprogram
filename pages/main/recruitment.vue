@@ -15,27 +15,27 @@
         ></u-notice-bar>
       </view>
     </view>
-    <view class="u-p-l-25 u-p-r-25">
-      <view class="u-flex">
-        <view class="u-flex u-m-r-15">
-          <span>县城</span>
-          <u-icon name="arrow-down" size="20"></u-icon>
-        </view>
-        <view class="u-relative u-flex-1">
-          <u-search
-            placeholder="请输入搜索内容"
-            v-model="keyword"
-            height="75"
-            border-color="#ccc"
-            bg-color="#fff"
-            :action-style="{ position: 'absolute', right: '5rpx' }"
-            search-icon=""
-            action-text=" "
-          ></u-search>
-          <u-icon name="search" class="search-icon" size="40"></u-icon>
-        </view>
-      </view>
-    </view>
+		<view class="u-flex">
+			<cs-dropdown ref="uDropdown" class="region-select" @self-open="showFilter">
+				<cs-dropdown-item v-model="region" title="全县" :options="regionList"></cs-dropdown-item>
+			</cs-dropdown>
+			<view class="u-flex-1 u-relative u-m-l-20 u-p-r-25 search-bar">
+				<u-search
+					placeholder="请输入搜索内容"
+					v-model="keyword"
+					height="75"
+					border-color="#ccc"
+					bg-color="#fff"
+					:action-style="{ position: 'absolute', right: '5rpx' }"
+					:clearable="false"
+					search-icon=""
+					action-text=" "
+					disabled
+					@click="openPage('/pages/jobs/search', 'navigateTo', {region: 100})"
+				></u-search>
+				<u-icon name="search" class="search-icon" size="40"></u-icon>
+			</view>
+		</view>
     <view class="more-cat u-text-right u-m-t-20 u-m-r-20">
       更多
       <u-icon name="arrow-right-double"></u-icon>
@@ -98,6 +98,13 @@ export default {
         { image: "https://cdn.uviewui.com/uview/swiper/2.jpg" },
         { image: "https://cdn.uviewui.com/uview/swiper/3.jpg" },
       ],
+			regionList: [
+				{label: '全县', value: ''},
+				{label: '乡镇1', value: '1'},
+				{label: '乡镇2', value: '2'},
+				{label: '乡镇3', value: '3'},
+			],
+			region: '',
       keyword: "",
       stickyTop: 0,
       noticeData: ["2021年永春最新补贴政策", "2021年永春最新补贴政策222"],
@@ -108,6 +115,9 @@ export default {
     };
   },
   methods: {
+		showFilter(){
+			this.isShowFilter = true;
+		},
     async getData(isReload) {
       if (isReload) this.listData = [];
       if (this.isLoading) return;
@@ -163,8 +173,17 @@ export default {
 <style lang="scss" scoped>
 .search-icon {
   position: absolute;
-  right: 20rpx;
+  right: 45rpx;
   top: 18rpx;
+}
+/deep/ .region-select {
+	// flex: unset !important;
+	.u-dropdown__content{
+		width: 750rpx !important
+	}
+	.u-dropdown__menu {
+		padding-left: 25rpx;
+	}
 }
 .notice-text {
   color: $cs-primary-color;

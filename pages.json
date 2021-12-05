@@ -59,6 +59,14 @@
 					"auth": false
 				}
 			},{
+				"path": "search",
+				"style": {
+					"navigationBarTitleText": "搜索"
+				},
+				"meta": {
+					"auth": false
+				}
+			},{
 				"path": "register",
 				"style": {
 					"navigationBarTitleText": "个人信息"
@@ -261,7 +269,7 @@
 		"current": 0,
 		"list": [{
 			"name": "custom", //模式名称
-			"path": "pages/jobs/register", //启动页面，必选
+			"path": "pages/main/recruitment", //启动页面，必选
 			"query": "autoplay=false&type=1" //启动参数，在页面的onLoad函数里面得到
 		}]
 	}

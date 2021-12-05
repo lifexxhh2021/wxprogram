@@ -1,7 +1,7 @@
 <template>
 	<view class="u-page">
 		<view class="header">
-			<view class="u-flex search-bar white-bg" style="background:#fff;">
+			<view class="u-flex search-bar" style="background:#fff;">
 				<view>
 					<u-icon name="map"></u-icon>
 					<text class="u-m-r-15">永春县</text>
