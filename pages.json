@@ -58,6 +58,14 @@
 				"meta": {
 					"auth": false
 				}
+			},{
+				"path": "register",
+				"style": {
+					"navigationBarTitleText": "基本信息"
+				},
+				"meta": {
+					"auth": false
+				}
 			}]
 	},{
 		"root": "pages/other",
@@ -245,7 +253,7 @@
 		"current": 0,
 		"list": [{
 			"name": "custom", //模式名称
-			"path": "pages/main/temporary", //启动页面，必选
+			"path": "pages/jobs/register", //启动页面，必选
 			"query": "autoplay=false&type=1" //启动参数，在页面的onLoad函数里面得到
 		}]
 	}
