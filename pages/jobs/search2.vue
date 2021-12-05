@@ -1,7 +1,7 @@
 <template>
 	<view class="u-page">
 		<view class="header">
-			<view class="u-flex search-bar u-p-25">
+			<view class="u-flex search-bar u-p-25" v-show="!catId">
 				<u-search
 					class="u-flex-1"
 					placeholder="请输入关键字"
@@ -39,7 +39,7 @@
 			</view>
 			<view class="split-line"></view>
 		</view>
-		<view class="search-result">
+		<view class="search-result" :class="{'spec': catId}">
 			<scroll-view
 				scroll-y
 				style="height:100%; width: 100%;"
@@ -71,6 +71,8 @@
 	export default {
 		data() {
 			return {
+				keyword: '',
+				catId: '',
 				listData: [],
 				isLoading: false,
 			}
@@ -101,6 +103,16 @@
 			  console.log('reachBottom....')
 				this.getData(false)
 			},
+		},
+		onLoad(opt){
+			console.log('onload>>', opt)
+			if(opt.catId){
+				this.catId = opt.catId;
+				uni.setNavigationBarTitle({
+					title: opt.catName + '搜索'
+				})
+			}
+			this.keyword = opt.keyword || '';
 		},
 		onShow() {
 		  this.getData(true);
@@ -134,6 +146,9 @@
 	}
 	.search-result{
 	  height: calc(100vh - var(--window-top) - var(--window-bottom) - 210rpx);
+		&.spec{
+			height: calc(100vh - var(--window-top) - var(--window-bottom) - 100rpx);
+		}
 	}
 	.result-item {
 	  width: 100%;

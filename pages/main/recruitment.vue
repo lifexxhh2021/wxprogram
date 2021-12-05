@@ -36,12 +36,12 @@
 				<u-icon name="search" class="search-icon" size="40"></u-icon>
 			</view>
 		</view>
-    <view class="more-cat u-text-right u-m-t-20 u-m-r-20">
+    <view class="more-cat u-text-right u-m-t-20 u-m-r-20" @click="openPage('/pages/main/jobs', 'switchTab')">
       更多
       <u-icon name="arrow-right-double"></u-icon>
     </view>
     <view class="catlist">
-      <view class="catitem" v-for="item,index in 8" :key="index">
+      <view class="catitem" v-for="item,index in 8" :key="index" @click="openPage('/pages/jobs/search2', 'navigateTo', {catId: 10, catName: '文秘'})">
         <u-icon
           name="icon_delete1"
           custom-prefix="custom-icon"

@@ -14,7 +14,7 @@
 		</view>
 		<view class="u-p-t-30 u-p-b-30 u-border-bottom">热门搜索</view>
 		<view class="u-flex u-flex-wrap u-m-t-30">
-			<view class="search-tag" v-for="item,index in hotTags" :key="index" @click="search(item)">蒙自</view>
+			<view class="search-tag" v-for="item,index in hotTags" :key="index" @click="search(item)">{{item}}</view>
 		</view>
 		<view class="u-p-t-40 u-p-b-30 u-border-bottom u-flex u-row-between">
 			<view>历史搜索</view>
@@ -45,7 +45,7 @@
 					historyList: [
 						{id: 1, name: '木工'},
 						{id: 2, name: '蒙自'},
-						{id: 3, name: '蒙自'},
+						{id: 3, name: '销售'},
 					]
 				}
 			},
