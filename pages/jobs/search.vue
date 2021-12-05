@@ -4,24 +4,33 @@
 			<u-search
 				class="u-flex-1"
 				placeholder="请输入关键字"
-				v-model="searchForm.keyword"
+				v-model="keyword"
 				height="75"
 				bg-color="#f8f8f8"
 				action-text=" "
+				@search="search"
 			></u-search>
 			<view @click="cancel">取消</view>
 		</view>
 		<view class="u-p-t-30 u-p-b-30 u-border-bottom">热门搜索</view>
 		<view class="u-flex u-flex-wrap u-m-t-30">
-			<view class="search-tag">蒙自</view>
-			<view class="search-tag">驾驶员</view>
-			<view class="search-tag">蒙自</view>
+			<view class="search-tag" v-for="item,index in hotTags" :key="index" @click="search(item)">蒙自</view>
 		</view>
-		<view class="u-p-t-40 u-p-b-30 u-border-bottom">历史搜索</view>
+		<view class="u-p-t-40 u-p-b-30 u-border-bottom u-flex u-row-between">
+			<view>历史搜索</view>
+			<view class="delete" v-show="historyList.length">
+				<u-icon name="close" size="24" @click="emptyHistory"></u-icon>			
+			</view>
+		</view>
 		<view class="history-list">
-			<view class="history-item u-flex u-row-between u-border-bottom" v-for="item in historyList" :key="item.id">
-				<view>{{item.name}}</view>
-				<u-icon name="close" size="24" @click="deleteHistory(item,index)"></u-icon>
+			<view class="history-item u-flex u-row-between u-border-bottom" 
+				v-for="item in historyList" 
+				:key="item.id"
+			>
+				<view class="u-flex-1" @click="search(item.name)">{{item.name}}</view>
+				<view class="delete" @click.stop="deleteHistory(item,index)">
+					<u-icon name="close" size="24"></u-icon>
+				</view>
 			</view>
 		</view>
 	</view>
@@ -31,6 +40,8 @@
 	  export default{
 			data() {
 				return {
+					keyword: '',
+					hotTags: ['蒙自', '驾驶员', '木工'],
 					historyList: [
 						{id: 1, name: '木工'},
 						{id: 2, name: '蒙自'},
@@ -39,11 +50,17 @@
 				}
 			},
 			methods: {
+				search(keyword){
+					this.openPage('/pages/jobs/search2', 'navigateTo', {keyword})
+				},
 				cancel(){
 					this.$u.route({type:'back'})
 				},
 				deleteHistory(item, index){
 					this.historyList.splice(index, 1);
+				},
+				emptyHistory(){
+					this.historyList = [];
 				}
 			},
 			onLoad(opt){			
@@ -68,5 +85,9 @@
 	.history-item{
 		height: 90rpx;
 		line-height: 90rpx;
+		.delete{
+			height: 90rpx;
+			padding-left:40rpx;
+		}
 	}
 </style>

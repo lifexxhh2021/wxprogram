@@ -68,8 +68,8 @@
         ></u-tabs>
       </view>
     </u-sticky>
-    <view class="list-wrap">
-      <view class="list-item" 
+    <view class="search-result">
+      <view class="result-item u-border-bottom" 
 				v-for="(item, index) in listData" :key="index"
 				@click="openPage('/pages/jobs/detail', 'navigateTo', {id: 100})"
 			>
@@ -208,18 +208,17 @@ export default {
 .stastics {
   border-bottom: 15rpx solid #f8f6f9;
 }
-.list-wrap {
+.search-result {
   // min-height: calc(100vh - 100rpx);
   min-height: 2000rpx;
-  padding: 0 20rpx;
   // min-height: calc(100vh - 44px - constant(safe-area-inset-top));
   // min-height: calc(100vh - 44px - env(safe-area-inset-top));
 }
-.list-item {
+.result-item {
   width: 100%;
   display: flex;
   justify-content: space-between;
-  margin-top: 15px;
+	padding: 30rpx;
   .name {
     font-size: 32rpx;
     color: #2a272c;

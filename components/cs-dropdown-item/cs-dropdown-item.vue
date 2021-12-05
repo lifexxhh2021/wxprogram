@@ -50,6 +50,10 @@
 				type: Boolean,
 				default: false,
 			},
+			iconHide: {
+				type: Boolean,
+				default: false,
+			},
 			// 选项数据，如果传入了默认slot，此参数无效
 			options: {
 				type: Array,
@@ -112,9 +116,11 @@
 					parent.menuList.push({
 						title: this.title,
 						disabled: this.disabled,
-						blocked: this.blocked
+						blocked: this.blocked,
+						iconHide:this.iconHide
 					});
 				}
+				console.log('menuList>>', parent.menuList)
 			},
 			// cell被点击
 			cellClick(value) {

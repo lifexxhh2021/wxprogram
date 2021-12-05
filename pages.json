@@ -67,6 +67,15 @@
 					"auth": false
 				}
 			},{
+				"path": "search2",
+				"style": {
+					"navigationBarTitleText": "职位搜索",
+					"disableScroll": true
+				},
+				"meta": {
+					"auth": false
+				}
+			},{
 				"path": "register",
 				"style": {
 					"navigationBarTitleText": "个人信息"

@@ -13,7 +13,7 @@
 					}">{{item.title}}</text>
 					<view class="u-dropdown__menu__item__arrow" :class="{
 						'u-dropdown__menu__item__arrow--rotate': index === current
-					}">
+					}" v-if="!item.iconHide">
 						<u-icon :custom-style="{display: 'flex'}" :name="menuIcon" :size="$u.addUnit(menuIconSize)" :color="index === current || highlightIndex == index ? activeColor : '#c0c4cc'"></u-icon>
 					</view>
 				</view>
