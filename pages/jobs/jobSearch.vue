@@ -45,21 +45,7 @@
 				style="height:100%; width: 100%;"
 				@scrolltolower="reachBottom"
 			>
-				<view class="result-item u-border-bottom" 
-					v-for="(item, index) in listData" :key="index"
-					@click="openPage('/pages/jobs/detail', 'navigateTo', {id: 100})"
-				>
-					<view>
-						<view class="name">服务员</view>
-						<view class="addr u-m-t-10 u-line-1">永春县城关XX街道</view>
-						<view class="education">初中及以下</view>
-					</view>
-					<view class="limit u-m-t-32">1-2年</view>
-					<view class="u-flex-col u-text-right">
-						<view class="money">2500元-3500元/月</view>
-						<view class="date u-m-t-30">10月06日</view>
-					</view>
-				</view>
+				<job-list :list="listData"></job-list>
 				<view class="empty" v-if="!listData.length && !isLoading">没有符合条件的结果</view>
 				<view class="loading" v-if="isLoading">加载中...</view>
 			</scroll-view>
@@ -68,7 +54,11 @@
 </template>
 
 <script>
+	import jobList from '@/components/job-list'
 	export default {
+		components: {
+			jobList
+		},
 		data() {
 			return {
 				keyword: '',
@@ -149,29 +139,6 @@
 		&.spec{
 			height: calc(100vh - var(--window-top) - var(--window-bottom) - 100rpx);
 		}
-	}
-	.result-item {
-	  width: 100%;
-		background: #fff;
-		padding: 30rpx;
-	  display: flex;
-	  justify-content: space-between;
-	  .name {
-	    font-size: 32rpx;
-	    color: #2a272c;
-	    font-weight: bold;
-	  }
-	  .limit {
-	    align-self: center;
-	  }
-	  .money {
-	    color: $cs-red;
-	    font-size: 32rpx;
-	  }
-	}
-	.loading {
-	  text-align: center;
-	  padding: 30rpx 0;
 	}
 	.filter-label{
 		color: #000;

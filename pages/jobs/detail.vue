@@ -41,7 +41,7 @@
 				<view class="u-flex u-p-t-20 u-p-b-20">
 					<view class="u-flex u-col-top">
 						<u-icon name="map-fill" color="#059bf4" size="60"></u-icon>
-						<text @click="getLocation">详细地址详细地址详细地址详细地址详细地址详细地址详细地址详细地址详细地址详细地址详细地址详细地址</text>
+						<text @click="showLocation">详细地址详细地址详细地址详细地址详细地址详细地址详细地址详细地址详细地址详细地址详细地址详细地址</text>
 					</view>
 					<u-icon name="arrow-right"></u-icon>
 				</view>
@@ -88,16 +88,16 @@
 		<view class="fixed-bottom">
 			<view class="u-flex u-row-between">
 				<view class="u-flex u-col-center u-p-l-25">
-					<view class="u-m-r-40">
+					<view class="u-p-r-10 u-m-r-20">	
 						<u-icon name="home" size="40"></u-icon>
 						<view @click="openPage('/pages/main/recruitment', 'switchTab')">首页</view>
 					</view>
-					<view>
+					<view class="u-p-l-10 u-p-r-10">
 						<u-icon name="bookmark" size="40"></u-icon>
 						<view>收藏</view>
 					</view>
 				</view>
-				<view class="delivery u-font-36">投递简历</view>
+				<view class="delivery u-font-36" @click="delivery">投递简历</view>
 			</view>
 		</view>
 	</view>
@@ -111,20 +111,23 @@
 			};
 		},
 		methods: {
-			getLocation() {
+			showLocation() {
 				console.log('获取地址。。。。')
-				uni.getLocation({
+				wx.getLocation({
 					type: 'gcj02',
 					success: function (res) {
 						console.log('当前位置的经度：' + res.longitude);
 						console.log('当前位置的纬度：' + res.latitude);
-						uni.chooseLocation({
+						wx.chooseLocation({
 							latitude: res.latitude,
 							longitude: res.longitude
 						})
 					}
 				})
 			},
+			delivery(){
+				this.openPage('/pages/personal/resume', 'navigateTo')
+			}
 		},
 	}
 </script>

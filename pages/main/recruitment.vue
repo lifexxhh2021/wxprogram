@@ -22,7 +22,6 @@
 			<view class="u-flex-1 u-relative u-m-l-20 u-p-r-25 search-bar">
 				<u-search
 					placeholder="请输入搜索内容"
-					v-model="keyword"
 					height="75"
 					border-color="#ccc"
 					bg-color="#fff"
@@ -41,14 +40,19 @@
       <u-icon name="arrow-right-double"></u-icon>
     </view>
     <view class="catlist">
-      <view class="catitem" v-for="item,index in 8" :key="index" @click="openPage('/pages/jobs/search2', 'navigateTo', {catId: 10, catName: '文秘'})">
+      <view 
+				class="catitem" 
+				v-for="item,index in categoryData" 
+				:key="index" 
+				@click="openPage('/pages/jobs/jobSearch', 'navigateTo', {catId: item.id, catName: item.name})"
+			>
         <u-icon
           name="icon_delete1"
           custom-prefix="custom-icon"
           size="80"
           color="#6867cf"
         ></u-icon>
-        <view class="text">鞋服纺织</view>
+        <view class="text">{{item.name}}</view>
       </view>
     </view>
     <view class="stastics u-p-25">入驻企业:1554 职位:1.52万 简历:5321 访问:3.64万</view>
@@ -69,28 +73,16 @@
       </view>
     </u-sticky>
     <view class="search-result">
-      <view class="result-item u-border-bottom" 
-				v-for="(item, index) in listData" :key="index"
-				@click="openPage('/pages/jobs/detail', 'navigateTo', {id: 100})"
-			>
-        <view>
-          <view class="name">服务员</view>
-          <view class="addr u-m-t-10 u-line-1">永春县城关XX街道</view>
-          <view class="education">初中及以下</view>
-        </view>
-        <view class="limit u-m-t-32">1-2年</view>
-        <view class="u-flex-col u-text-right">
-          <view class="money">2500元-3500元/月</view>
-          <view class="date u-m-t-30">10月06日</view>
-        </view>
-      </view>
+			<job-list :list="listData"></job-list>
       <view class="loading" v-if="isLoading">加载中...</view>
     </view>
   </view>
 </template>
 
 <script>
+import jobList from '@/components/job-list.vue'
 export default {
+	components: { jobList },
   data() {
     return {
       banners: [
@@ -98,6 +90,7 @@ export default {
         { image: "https://cdn.uviewui.com/uview/swiper/2.jpg" },
         { image: "https://cdn.uviewui.com/uview/swiper/3.jpg" },
       ],
+			noticeData: ["2021年永春最新补贴政策", "2021年永春最新补贴政策222"],
 			regionList: [
 				{label: '全县', value: ''},
 				{label: '乡镇1', value: '1'},
@@ -105,13 +98,21 @@ export default {
 				{label: '乡镇3', value: '3'},
 			],
 			region: '',
-      keyword: "",
+			categoryData: [
+				{id: 1, name: '建筑类'},{id: 2, name: '厂矿类'},
+				{id: 3, name: '维修类'},{id: 4, name: '美容美发'},
+				{id: 5, name: '水电类'},{id: 6, name: '培训类'},
+				{id: 7, name: '物业家政'},{id: 8, name: '文职类'},
+			],
       stickyTop: 0,
-      noticeData: ["2021年永春最新补贴政策", "2021年永春最新补贴政策222"],
-      tabs: [{ name: "为您推荐" }, { name: "热门职位" }, { name: "最新发布" }],
+      tabs: [
+				{ name: "为您推荐" }, 
+				{ name: "热门职位" }, 
+				{ name: "最新发布" },
+			],
       currentTab: 0,
-      listData: [],
       isLoading: false,
+      listData: [],
     };
   },
   methods: {
@@ -177,7 +178,6 @@ export default {
   top: 18rpx;
 }
 /deep/ .region-select {
-	// flex: unset !important;
 	.u-dropdown__content{
 		width: 750rpx !important
 	}
@@ -209,31 +209,6 @@ export default {
   border-bottom: 15rpx solid #f8f6f9;
 }
 .search-result {
-  // min-height: calc(100vh - 100rpx);
-  min-height: 2000rpx;
-  // min-height: calc(100vh - 44px - constant(safe-area-inset-top));
-  // min-height: calc(100vh - 44px - env(safe-area-inset-top));
-}
-.result-item {
-  width: 100%;
-  display: flex;
-  justify-content: space-between;
-	padding: 30rpx;
-  .name {
-    font-size: 32rpx;
-    color: #2a272c;
-    font-weight: bold;
-  }
-  .limit {
-    align-self: center;
-  }
-  .money {
-    color: $cs-red;
-    font-size: 32rpx;
-  }
-}
-.loading {
-  text-align: center;
-  padding: 30rpx 0;
+	min-height: calc(100vh - var(--window-bottom) - var(--window-top) - 100rpx);
 }
 </style>

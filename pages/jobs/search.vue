@@ -40,6 +40,7 @@
 	  export default{
 			data() {
 				return {
+					region: '',
 					keyword: '',
 					hotTags: ['蒙自', '驾驶员', '木工'],
 					historyList: [
@@ -51,7 +52,7 @@
 			},
 			methods: {
 				search(keyword){
-					this.openPage('/pages/jobs/search2', 'navigateTo', {keyword})
+					this.openPage('/pages/jobs/jobSearch', 'navigateTo', {keyword, region: this.region})
 				},
 				cancel(){
 					this.$u.route({type:'back'})
@@ -65,6 +66,7 @@
 			},
 			onLoad(opt){			
 				console.log('onLoad>>', opt)
+				this.region = opt.region || '';
 			},
 		}
 </script>

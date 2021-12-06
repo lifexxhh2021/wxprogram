@@ -87,7 +87,7 @@
 				this.catIndex = index;
 			},
 			search(item){
-				this.openPage('/pages/jobs/search2', 'navigateTo', {catId: item.id, catName: item.name})
+				this.openPage('/pages/jobs/jobSearch', 'navigateTo', {catId: item.id, catName: item.name})
 			}
 		}
 	}
@@ -120,6 +120,4 @@ page{
 		color: #cacaca;
 	}
 }
-
-
 </style>

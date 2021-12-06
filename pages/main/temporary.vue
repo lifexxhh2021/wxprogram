@@ -78,24 +78,9 @@
 				style="height:100%; width: 100%;"
 				@scrolltolower="reachBottom"
 			>
-        <view class="result-item u-border-bottom" v-for="item,index in listData" :key="index">
-          <view class="title u-flex u-row-between">
-            <view class="name">临促</view>
-            <view class="money">70元-300元/月</view>
-          </view>
-          <view class="u-flex u-row-between u-m-t-10">
-            <view class="u-flex-1">
-              <view class="desc u-line-1">描述描述描述描述描述描述描述描述描述描述描述描述描述描述描述描述</view>
-              <view class="time u-m-t-5">工作时间：xxxx-xxxx 08:00-12:00</view>
-              <view class="u-flex u-flex-wrap">
-                <view class="tag u-m-t-15">兼职</view>
-              </view>
-            </view>
-            <view class="delivery-btn">投简历</view>
-          </view>
-        </view>
-			<view class="empty" v-if="!listData.length && !isLoading">没有符合条件的结果</view>
-			<view class="loading" v-if="isLoading">加载中...</view>
+				<job-list :list="listData" type="2"></job-list>
+				<view class="empty" v-if="!listData.length && !isLoading">没有符合条件的结果</view>
+				<view class="loading" v-if="isLoading">加载中...</view>
       </scroll-view>
 		</view>
 	</view>
@@ -103,8 +88,9 @@
 
 <script>
   import jobFilter from '@/components/job-filter.vue';
+	import jobList from '@/components/job-list.vue';
 	export default {
-    components: { jobFilter },
+    components: { jobFilter, jobList },
 		data() {
 			return {
 				searchForm: {
@@ -175,39 +161,6 @@ page{
 }
 .search-result{
   height: calc(100vh - var(--window-top) - var(--window-bottom) - 210rpx);
-}
-.result-item{
-	width:100%;
-	background: #fff;
-	padding: 30rpx;
-	.name{
-		color: #000;
-		font-weight: bold;
-		font-size: 36rpx;
-	}
-	.money{
-		color: $cs-red;
-		font-weight: bold;
-		font-size: 36rpx;
-	}
-	.desc{
-		max-width: 500rpx;
-	}
-	.time{
-		color: #a0a0a0;
-	}
-	.tag{
-		padding: 15rpx;
-		background: $cs-bg-color;
-		border-radius: 10rpx;
-		margin-right: 20rpx;
-	}
-	.delivery-btn{
-		padding: 20rpx;
-		background:$cs-primary-color;
-		color: #fff;
-		border-radius: 15rpx;
-	}
 }
 .empty{
 	padding-top: 100rpx;

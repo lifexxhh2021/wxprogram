@@ -42,14 +42,6 @@
 	"subPackages": [{
 		"root": "pages/jobs",
 		"pages": [{
-				"path": "detail",
-				"style": {
-					"navigationBarTitleText": "职位详情"
-				},
-				"meta": {
-					"auth": false
-				}
-			},{
 				"path": "search",
 				"style": {
 					"navigationBarTitleText": "搜索"
@@ -58,7 +50,7 @@
 					"auth": false
 				}
 			},{
-				"path": "search2",
+				"path": "jobSearch",
 				"style": {
 					"navigationBarTitleText": "职位搜索",
 					"disableScroll": true
@@ -67,22 +59,36 @@
 					"auth": false
 				}
 			},{
-				"path": "register",
+				"path": "detail",
 				"style": {
-					"navigationBarTitleText": "个人信息"
-				},
-				"meta": {
-					"auth": false
-				}
-			},{
-				"path": "register2",
-				"style": {
-					"navigationBarTitleText": "公司信息"
+					"navigationBarTitleText": "职位详情"
 				},
 				"meta": {
 					"auth": false
 				}
 			}]
+	},{
+		"root": "pages/personal",
+		"pages": [{
+			"path": "resume",
+			"style": {
+				"navigationBarTitleText": "个人信息"
+			},
+			"meta": {
+				"auth": false
+			}
+		}]
+	},{
+		"root": "pages/company",
+		"pages": [{
+			"path": "register",
+			"style": {
+				"navigationBarTitleText": "公司信息"
+			},
+			"meta": {
+				"auth": false
+			}
+		}]
 	}],
 	"globalStyle": {
 		"navigationBarBackgroundColor": "#fff",
