@@ -265,13 +265,13 @@
 		text-align: center;
 		font-size: 34rpx;
 		position: fixed;
-		// #ifndef H5
+		/* #ifndef H5 */
 		bottom: calc(constant(safe-area-inset-bottom) + var(--window-bottom));
 		bottom: calc(env(safe-area-inset-bottom) + var(--window-bottom));
-		// #endif
-		// #ifdef H5
+		/* #endif */
+		/* #ifdef H5 */
 		bottom: 0;
-		// #endif
+		/* #endif */
 		z-index: 9999;
 		background: $cs-primary-color;
 		color: #fff;
