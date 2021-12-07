@@ -68,7 +68,6 @@
           bar-width="74"
           font-size="32"
           active-color="#0090f4"
-          bar-style="{'text-align':'center'}"
         ></u-tabs>
       </view>
     </u-sticky>

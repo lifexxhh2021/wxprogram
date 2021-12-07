@@ -23,50 +23,25 @@
 					<cs-dropdown-item title="筛选">
 						<view class="slot-content u-p-l-25" style="background-color: #FFFFFF;">
 							<scroll-view scroll-y="true" style="height:600rpx;padding-bottom:30rpx;" @touchmove.stop.prevent>
-								<view class="filter-label">性别要求</view>
-								<view class="filter-options u-flex u-flex-wrap">
-									<view class="option">全部</view>
-									<view class="option">不限性别</view>
-									<view class="option">男性</view>
-									<view class="option">女性</view>
-								</view>
-								<view class="filter-label">身份要求</view>
-								<view class="filter-options u-flex u-flex-wrap">
-									<view class="option">全部</view>
-									<view class="option">不限身份</view>
-									<view class="option">学生可做</view>
-									<view class="option">非学生可做</view>
-								</view>
-								<view class="filter-label">工作时间</view>
-								<view class="filter-options u-flex u-flex-wrap">
-									<view class="option">全部</view>
-									<view class="option">仅周末</view>
-									<view class="option">仅工作日</view>
-									<view class="option">半天</view>
-									<view class="option">全天</view>
-								</view>
+								<filterCheckbox :list="genderList" v-model="searchForm.gender" label="性别要求" :showAll="false"></filterCheckbox>
+								<filterCheckbox :list="identityList" v-model="searchForm.identity" label="身份要求" :showAll="false"></filterCheckbox>
+								<filterCheckbox :list="worktimeList" v-model="searchForm.time" label="工作时间"></filterCheckbox>
 								<view class="filter-label">期望薪资</view>
 								<view class="u-flex">
-									<view class="u-m-r-30 u-flex">最低薪资：<u-input type="number" placeholder="最低薪资" border style="width:160rpx"></u-input>元</view>
-									<view class="u-flex">最高薪资：<u-input type="number" placeholder="最高薪资" border style="width:160rpx"></u-input>元</view>
+									<view class="u-m-r-30 u-flex">最低薪资：<u-input type="number" placeholder="最低薪资" v-model="searchForm.price_from" border style="width:160rpx"></u-input>元</view>
+									<view class="u-flex">最高薪资：<u-input type="number" placeholder="最高薪资" v-model="searchForm.price_to" border style="width:160rpx"></u-input>元</view>
 								</view>
-								<view class="filter-label">排列方式</view>
-								<view class="filter-options u-flex u-flex-wrap">
-									<view class="option">推荐排序</view>
-									<view class="option">离我最近</view>
-									<view class="option">最新发布</view>
-									<view class="option">薪资最高</view>
-								</view>
+								<filterCheckbox :list="sortList" v-model="searchForm.sort" label="排列方式"></filterCheckbox>
 							</scroll-view>
 							<view class="u-flex opt-btn-group u-border-top">
-								<view class="opt-btn reset-btn" @click="closeDropdown">重置</view>
+								<view class="opt-btn reset-btn" @click="resetFilter">重置</view>
 								<view class="opt-btn save-btn" @click="closeDropdown">确定</view>
 							</view>
 						</view>
 					</cs-dropdown-item>
 				</cs-dropdown>
 				<view class="dropdowncont-panel" :class="{'hidden': !isShowFilter}">
-					<job-filter @cancel="hideFilter" @save="saveFilter">
+					<job-filter v-model="searchForm.jobs" @cancel="hideFilter" @save="saveFilter">
 						<u-button @click="closeDropdown">关闭</u-button>
 					</job-filter>
 				</view>
@@ -89,19 +64,49 @@
 <script>
   import jobFilter from '@/components/job-filter.vue';
 	import jobList from '@/components/job-list.vue';
+	import filterCheckbox from '@/components/filter-checkbox.vue';
 	export default {
-    components: { jobFilter, jobList },
+    components: { jobFilter, jobList, filterCheckbox },
 		data() {
 			return {
 				searchForm: {
 					keyword: '',
-					region: ''
+					region: '',
+					jobs: ['水电、电焊', '杂工', '促销员'],
+					gender: [],
+					identity: [],
+					time: [],
+					sort: [],
+					price_from: '',
+					price_to: ''
 				},
 				regionList: [
 					{label: '全县', value: ''},
 					{label: '乡镇1', value: '1'},
 					{label: '乡镇2', value: '2'},
 					{label: '乡镇3', value: '3'},
+				],
+				genderList: [
+					{id: 0, name: '不限性别'},
+					{id: 1, name: '男性'},
+					{id: 2, name: '女性'}
+				],
+				identityList: [
+					{id: 0, name: '不限身份'},
+					{id: 1, name: '学生可做'},
+					{id: 2, name: '非学生可做'}
+				],
+				worktimeList: [
+					{id: 0, name: '仅周末'},
+					{id: 1, name: '仅工作日'},
+					{id: 2, name: '半天'},
+					{id: 3, name: '全天'},
+				],
+				sortList: [
+					{id: 0, name: '推荐排序'},
+					{id: 1, name: '离我最近'},
+					{id: 2, name: '最新发布'},
+					{id: 3, name: '薪资最高'},
 				],
 				listData: [],
 				isLoading: false,
@@ -119,6 +124,7 @@
 			saveFilter(){
 				this.isShowFilter = false;
 				this.$refs.uDropdown.close();
+				this.getData(true);
 			},
 			getData(isReload){
 				if(isReload) this.listData = [];
@@ -134,6 +140,14 @@
 			  console.log('reachBottom....')
 				this.getData(false)
 			},
+			resetFilter(){
+				this.$set(this.searchForm, 'gender', []);
+				this.$set(this.searchForm, 'identity', []);
+				this.$set(this.searchForm, 'time', []);
+				this.$set(this.searchForm, 'sort', []);
+				this.$set(this.searchForm, 'price_from', '');
+				this.$set(this.searchForm, 'price_to', '');
+			},
 			closeDropdown(){
 				this.$refs.uDropdown.close();
 			},
@@ -144,7 +158,7 @@
 	}
 </script>
 
-<style lang="scss">
+<style lang="scss" scoped>
 page{
 	background-color: $cs-bg-color;
 }
