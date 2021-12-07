@@ -21,13 +21,30 @@
 					<cs-dropdown-item title="筛选">
 						<view class="slot-content u-p-l-25" style="background-color: #FFFFFF;">
 							<scroll-view scroll-y="true" style="height:600rpx;padding-bottom:30rpx;" @touchmove.stop.prevent>
-								<view class="filter-label">工作地点</view>
-								<view class="filter-options u-flex u-flex-wrap">
-									<view class="option">全部</view>
-									<view class="option">不限性别</view>
-									<view class="option">男性</view>
-									<view class="option">女性</view>
-								</view>
+								<filterCheckbox 
+									:list="regionList" 
+									v-model="searchForm.region" 
+									label="工作地点" 
+									:multiple="true" 
+									:showAll="true" 
+									showAllText="不限"
+								></filterCheckbox>
+								<filterCheckbox
+									:list="priceList" 
+									v-model="searchForm.price" 
+									label="薪资(单选)" 
+									:multiple="false" 
+									:showAll="true" 
+									showAllText="不限"
+								></filterCheckbox>
+								<filterCheckbox
+									:list="limitList" 
+									v-model="searchForm.limit" 
+									label="工作经验(单选)" 
+									:multiple="false" 
+									:showAll="true" 
+									showAllText="不限"
+								></filterCheckbox>
 							</scroll-view>
 							<view class="u-flex opt-btn-group u-border-top">
 								<view class="opt-btn reset-btn" @click="closeDropdown">重置</view>
@@ -55,12 +72,36 @@
 
 <script>
 	import jobList from '@/components/job-list'
+	import filterCheckbox from '@/components/filter-checkbox.vue';
 	export default {
 		components: {
-			jobList
+			jobList, filterCheckbox
 		},
 		data() {
 			return {
+				regionList: [
+					{id: 1, name: '地点1'},
+					{id: 2, name: '地点2'},
+					{id: 3, name: '地点3'},
+					{id: 4, name: '地点4'},
+				],
+				priceList: [
+					{id: 1, name: '面议'},
+					{id: 2, name: '1K以下'},
+					{id: 3, name: '1-2K'},
+					{id: 4, name: '2-3K'},
+				],
+				limitList: [
+					{id: 1, name: '经验不限'},
+					{id: 2, name: '应届毕业生'},
+					{id: 3, name: '1年以下'},
+					{id: 4, name: '1-2年'},
+				],
+				searchForm: {
+					region: [],
+					limit: [],
+					price: []
+				},
 				keyword: '',
 				catId: '',
 				listData: [],
@@ -96,13 +137,13 @@
 		},
 		onLoad(opt){
 			console.log('onload>>', opt)
-			if(opt.catId){
+			if(opt && opt.catId){
 				this.catId = opt.catId;
 				uni.setNavigationBarTitle({
 					title: opt.catName + '搜索'
 				})
 			}
-			this.keyword = opt.keyword || '';
+			this.keyword = opt&&opt.keyword || '';
 		},
 		onShow() {
 		  this.getData(true);

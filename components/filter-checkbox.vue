@@ -2,12 +2,12 @@
 	<view>
 		<view class="filter-label" v-html="label"></view>
 		<view class="filter-options u-flex u-flex-wrap">
-			<view class="option" :class="{'active': isCheckAll}" v-show="showAll" @click="checkAll">全部</view>
-			<view class="option" 
+			<view class="filter-option" :class="{'active': isCheckAll}" v-if="showAll" @click="checkAllHander">{{showAllText}}</view>
+			<view class="filter-option" 
 				v-for="item,index in list" 
 				:key="item.id" 
-				:class="{'active': item.checked}"
-				@click="checkItem(item,index)"
+				:class="{'active': selected.includes(item.id)}"
+				@click.stop="checkItemHandler(item,index)"
 			>{{item.name}}</view>
 		</view>
 	</view>
@@ -20,58 +20,66 @@
 				type: Array,
 				default: []
 			},
-			label: '',
+			label: {
+				type: String,
+				default: ''
+			},
 			list: {
 				type: Array,
-				default: [] 
+				default: ()=>[]
 			},
-			multiple: false,
-			showAll: true
+			multiple: {
+				type: Boolean,
+				default: false
+			},
+			showAll: {
+				type: Boolean,
+				default: false
+			},
+			showAllText: {
+				type: String,
+				default: '全部'
+			}
 		},
-		computed: {
-			isCheckAll() {
-				if(!this.value.length) return true;
-				if(this.value.length === this.list.length) return true;
-				return false;
+		data() {
+			return {
+				isCheckAll: false,
+				selected: [],
 			}
 		},
 		watch: {
-			value(nv, ov){
-				this.initData()
+			value:{
+				handler: function(nv, ov){
+					this.initData()
+				},
+				deep: true
 			}
 		},
 		methods: {
-			checkAll() {
-				this.list = this.map(a=>{
-					this.$set(a, 'checked', false);
-				})
-				this.$emit('input', [])
+			checkAllHander(){
+				this.selected = [];
+				this.isCheckAll = true;
+				this.$emit('input', this.selected);
 			},
-			checkItem(item, index){
+			checkItemHandler(item, index){
 				if(this.multiple){
-					this.$set(item, 'checked', !item.checked);
-					this.$set(this.list[index], 'checked', !item.checked);
-					this.$emit('input', this.list.filter(a=>a.checked).map(a=>a.id));
+					let _index = this.selected.findIndex(a=>a==item.id);
+					if(_index > -1){
+						this.selected.splice(_index, 1);
+					} else {
+						this.selected.push(item.id);
+					}
+					this.$emit('input', this.selected);
 				} else {
-					this.list.map(l=>{
-						this.$set(l, 'checked', false);
-					})
-					this.$set(item, 'checked', true);
-					this.$emit('input', [item.id]);
+					this.selected = [item.id];
+					this.$emit('input', this.selected);
 				}
+				this.isCheckAll = !this.selected.length || this.selected.length===this.list.length;
 			},
 			initData(){
-				this.list.map(item=>{
-					if(this.value.some(val=>val==item.id)){
-						this.$set(item, 'checked', true);
-					} else {
-						this.$set(item, 'checked', false);
-					}
-				})
+				this.selected = this.value;
+				this.isCheckAll = !this.selected.length || this.selected.length===this.list.length;
 			}
-		},
-		created(){
-			this.initData()
 		}
 	}
 </script>
@@ -83,7 +91,7 @@
 		line-height: 80rpx;
 	}
 	.filter-options{
-		.option{
+		.filter-option{
 			min-width: 160rpx;
 			height: 60rpx;
 			line-height: 60rpx;
